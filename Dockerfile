@@ -11,3 +11,7 @@ RUN conda install -c conda-forge mkdocs-material mkdocs-git-revision-date-locali
 
 RUN pip install git+https://github.com/bobek/mkdocs-dashomatic.git mkdocs-glightbox
 
+ENV PATH /opt/conda/bin:$PATH
+
+CMD [ "/bin/bash" ]
+
