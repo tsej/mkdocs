@@ -1,17 +1,15 @@
-FROM continuumio/miniconda3:latest
+FROM python:3-alpine
 MAINTAINER jaSS <kostrubiec@gmail.com>
 
-RUN conda update -n base -c defaults conda
+RUN apk add --no-cache git
 
-RUN conda create --name mkdocs --yes python 
+RUN pip install --no-cache-dir --upgrade pip
 
-SHELL ["conda", "run", "-n", "mkdocs", "/bin/bash", "-c"]
+RUN pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
 
-RUN conda install -c conda-forge mkdocs-material mkdocs-git-revision-date-localized-plugin 
+RUN pip install --no-cache-dir git+https://github.com/bobek/mkdocs-dashomatic.git mkdocs-glightbox
 
-RUN pip install git+https://github.com/bobek/mkdocs-dashomatic.git mkdocs-glightbox
+WORKDIR /workdir
 
-ENV PATH /opt/conda/bin:$PATH
-
-CMD [ "/bin/bash" ]
+CMD [ "/bin/sh" ]
 
