@@ -9,6 +9,8 @@ RUN pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
 
 RUN pip install --no-cache-dir git+https://github.com/bobek/mkdocs-dashomatic.git mkdocs-glightbox
 
+RUN git config --global --add safe.directory /workdir
+
 WORKDIR /workdir
 
 CMD [ "/bin/sh" ]
